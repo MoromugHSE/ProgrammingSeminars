@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Figures
 {
-    class Square : Point
+    public class Square : Point
     {
-        internal double side;
+        protected double side;
 
         public Square(double x, double y, double side)
         {

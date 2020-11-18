@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Figures
 {
-    class Circle : Point
+    public class Circle : Point
     {
         protected double rad;
 
@@ -20,7 +18,7 @@ namespace Figures
             get => rad;
             protected set
             {
-                if (!(rad > 0))
+                if (!(value > 0))
                 {
                     throw new ArgumentException("Радиус должен быть положительным!");
                 }
