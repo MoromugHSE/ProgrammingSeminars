@@ -6,7 +6,7 @@ namespace Sem11Task2
     class Program
     {
         private static Random rnd = new Random();
-        
+
         private static double GetDouble()
         {
             return Math.Max(rnd.NextDouble(), double.Epsilon) * 90 + 10;
@@ -34,7 +34,20 @@ namespace Sem11Task2
                     figArray[squareCount++ + circleCount] = new Square(a, b, c);
                 }
             }
-
+            while (squareCount < squareAmount)
+            {
+                double a = GetDouble();
+                double b = GetDouble();
+                double c = GetDouble();
+                figArray[squareCount++ + circleCount] = new Square(a, b, c);
+            }
+            while (circleCount < circleAmount)
+            {
+                double a = GetDouble();
+                double b = GetDouble();
+                double c = GetDouble();
+                figArray[circleCount++ + squareCount] = new Circle(a, b, c);
+            }
             return figArray;
         }
         static void Main(string[] args)
@@ -49,7 +62,51 @@ namespace Sem11Task2
             p.Display();
             Console.WriteLine(p.Area);
 
-            Point[] figs = FigArray();
+            Point[] figureArray = FigArray();
+            int circleCount = 0;
+            double circlePerimeterSum = 0;
+            double circleAreaSum = 0;
+            int squareCount = 0;
+            double squarePerimeterSum = 0;
+            double squareAreaSum = 0;
+            foreach (var figure in figureArray)
+            {
+                if (figure is Circle circle)
+                {
+                    ++circleCount;
+                    circlePerimeterSum += circle.Len;
+                    circleAreaSum += circle.Area;
+                }
+                else if (figure is Square square)
+                {
+                    ++squareCount;
+                    squarePerimeterSum += square.Len;
+                    squareAreaSum += square.Area;
+                }
+            }
+            Console.WriteLine($"Кругов {circleCount}, а квадратов {squareCount}.");
+            Console.WriteLine($"Средняя длина окружностей: {(circleCount != 0 ? circlePerimeterSum / circleCount : 0):.##}");
+            Console.WriteLine($"Средняя площадь кругов: {(circleCount != 0 ? circleAreaSum / circleCount : 0):.##}");
+            Console.WriteLine($"Средний периметр квадратов: {(squareCount != 0 ? squarePerimeterSum / squareCount : 0):.##}");
+            Console.WriteLine($"Средняя площадь квадратов: {(squareCount != 0 ? squareAreaSum / squareCount : 0):.##}");
+            double[] areaArray = new double[figureArray.Length];
+            for (int i=0; i < figureArray.Length; ++i)
+            {
+                areaArray[i] = figureArray[i].Area;
+            }
+            Array.Sort(areaArray, figureArray);
+            foreach (var figure in figureArray)
+            {
+                figure.Display();
+                if (figure is Circle circle)
+                {
+                    Console.WriteLine($"Длина окружности: {circle.Len} Площадь: {circle.Area}");
+                }
+                else if (figure is Square square)
+                {
+                    Console.WriteLine($"Периметр: {square.Len} Площадь: {square.Area}");
+                }
+            }
         }
     }
 }
