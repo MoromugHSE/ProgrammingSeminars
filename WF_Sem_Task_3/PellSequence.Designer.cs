@@ -36,20 +36,22 @@
             // 
             this.displayBox.AutoSize = true;
             this.displayBox.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.displayBox.Location = new System.Drawing.Point(365, 135);
+            this.displayBox.Location = new System.Drawing.Point(329, 135);
             this.displayBox.Name = "displayBox";
             this.displayBox.Size = new System.Drawing.Size(90, 37);
             this.displayBox.TabIndex = 0;
             this.displayBox.Text = "label1";
+            this.displayBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nextNumberButton
             // 
-            this.nextNumberButton.Location = new System.Drawing.Point(318, 251);
+            this.nextNumberButton.Location = new System.Drawing.Point(294, 281);
             this.nextNumberButton.Name = "nextNumberButton";
-            this.nextNumberButton.Size = new System.Drawing.Size(175, 23);
+            this.nextNumberButton.Size = new System.Drawing.Size(175, 26);
             this.nextNumberButton.TabIndex = 1;
             this.nextNumberButton.Text = "Следующий член ряда";
             this.nextNumberButton.UseVisualStyleBackColor = true;
+            this.nextNumberButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nextNumberButton_MouseClick);
             // 
             // PellSequence
             // 
@@ -60,6 +62,7 @@
             this.Controls.Add(this.displayBox);
             this.Name = "PellSequence";
             this.Text = "Ряд Пелла почленно";
+            this.Load += new System.EventHandler(this.PellSequence_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
